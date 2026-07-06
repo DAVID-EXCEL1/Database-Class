@@ -1,6 +1,5 @@
 const mongoose = require("mongoose")
 
-
 // Schema for user registration : This defines the structure of the user data in the database
 const userSchema = new mongoose.Schema({
     fullName: { type: String, required: true },
