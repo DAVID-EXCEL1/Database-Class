@@ -4,12 +4,16 @@ const app = express();
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const userRoutes = require('./routes/user.routes');
+const cors = require("cors");
 
 dotenv.config();
 app.set('view engine', 'ejs');
 
 const port = process.env.PORT || 3000;
 
+
+
+// middleware
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log('Connected to MongoDB');
@@ -19,13 +23,15 @@ mongoose.connect(process.env.MONGO_URI)
     });
 
     app.use("/", userRoutes);
+    app.use(cors())
+    app.use(express.json())
 
-
-
-app.get('/', (req, res) => {
-    res.render('index');
+app.get('/api/message', (req, res) => {
+    // res.render('index');
+    res.json({
+        message:"Hello from my backend"
+    })
 });
-
 
 
 app.listen(port, () => {
