@@ -22,7 +22,7 @@ mongoose.connect(process.env.MONGO_URI)
         console.error('Error connecting to MongoDB:', err);
     });
 
-    app.use("/", userRoutes);
+    app.use("/api", userRoutes);
     app.use(cors())
     app.use(express.json())
 
